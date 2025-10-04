@@ -12,6 +12,9 @@ Init ==
   /\ routes = << >>
   /\ scwPolicies = [ u \in Users |-> TRUE ] \* TRUE means SCW policy validator approves per invariant sketch
 
+vars == << keysHeld, attested, routes, scwPolicies >>
+Spec == Init /\ [][Next]_vars
+
 NoPlatformKeys == \A u \in Users: keysHeld[u] = FALSE
 AttestationPerPayment == \A p \in Payments: p \in attested
 SCWPolicyEnforced == \A u \in Users: scwPolicies[u] = TRUE
