@@ -1,0 +1,15 @@
+{
+  "extends": "../../packages/shared/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@org/shared/*": [
+        "../../packages/shared/src/*"
+      ]
+    }
+  },
+  "include": [
+    "app"
+  ]
+}

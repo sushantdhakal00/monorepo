@@ -1,0 +1,36 @@
+{
+  "name": "@org/payments-monorepo",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "build": "echo build root",
+    "lint": "eslint . --ext .ts,.tsx,.js,.cjs,.mjs",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@types/node": "^20.11.30",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.9.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0",
+    "zod": "^3.23.8"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,cjs,mjs,json,md,yaml,yml}": "prettier --write"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}

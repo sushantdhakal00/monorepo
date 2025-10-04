@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r lint || true
+      - run: pnpm -r build
+      - run: pnpm -r test --if-present
+  tla:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/tlaplus/tlaplus:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Model check
+        run: |
+          cd specs
+          tlc -deadlock -workers 2 TrustModel.tla TrustModel.cfg || (echo "::error ::TLA+ check failed" && exit 1)
